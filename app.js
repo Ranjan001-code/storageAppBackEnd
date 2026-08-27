@@ -36,6 +36,10 @@ app.use(
     },
   }),
 );
+
+app.use("/", () => {
+  return res.status(200).json({ msg: "Hello from storageAppBackEnd" });
+});
 app.use("/directory", checkAuth, directoryRoutes);
 app.use("/file", checkAuth, fileRoutes);
 app.use("/subscriptions", checkAuth, subscriptionRoutes);
@@ -43,14 +47,7 @@ app.use("/webhooks", webhookRoutes);
 app.use("/dev", devRoutes);
 app.use("/admin", checkAuth, checkIsAdmin, adminRoutes);
 app.use("/manager", checkAuth, checkIsManager, managerRoutes);
-app.use(
-  "/",
-  (req, res, next) => {
-    console.log("/ route hit");
-    next();
-  },
-  userRoutes,
-);
+app.use("/", userRoutes);
 app.use("/auth", authRoutes);
 
 app.use((err, req, res, next) => {
