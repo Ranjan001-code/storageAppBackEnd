@@ -154,7 +154,6 @@ export const login = async (req, res, next) => {
     signed: true,
     secure: true,
     sameSite: "none",
-    partitioned: true,
     maxAge: sessionExpiryTime,
   });
   console.log("ending");

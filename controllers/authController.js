@@ -92,7 +92,6 @@ export const loginWithGoogle = async (req, res, next) => {
       signed: true,
       secure: true,
       sameSite: "none",
-      partitioned: true,
       maxAge: sessionExpiryTime,
     });
 
@@ -265,7 +264,6 @@ export const githubCallback = async (req, res, next) => {
       signed: true,
       secure: true,
       sameSite: "none",
-      partitioned: true,
         maxAge: sessionExpiryTime,
       });
 
@@ -315,7 +313,6 @@ export const githubCallback = async (req, res, next) => {
       signed: true,
       secure: true,
       sameSite: "none",
-      partitioned: true,
         maxAge: sessionExpiryTime,
       });
 
