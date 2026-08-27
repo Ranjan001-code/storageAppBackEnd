@@ -148,11 +148,13 @@ export const login = async (req, res, next) => {
 
   const sessionExpiryTime = 60 * 1000 * 60 * 24 * 7;
   await redisClient.expire(redisKey, sessionExpiryTime / 1000);
- console.log("starting");
+  console.log("starting");
   res.cookie("sid", sessionId, {
-   httpOnly: true,
-      signed: true,
-      sameSite: "none",
+    httpOnly: true,
+    signed: true,
+    secure: true,
+    sameSite: "none",
+    partitioned: true,
     maxAge: sessionExpiryTime,
   });
   console.log("ending");
@@ -198,7 +200,7 @@ export const getCurrentUser = async (req, res) => {
     .lean();
   const planId = subscription ? subscription.planId : null;
   res.status(200).json({
-    id:user._id,
+    id: user._id,
     name: user.name,
     email: user.email,
     picture: user.picture,
