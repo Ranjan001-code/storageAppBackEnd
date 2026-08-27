@@ -129,6 +129,7 @@ export const login = async (req, res, next) => {
         RETURN: [],
       },
     );
+    console.log(allSessions);
 
     if (allSessions?.total >= 2) {
       await redisClient.del(allSessions.documents[0].id);
