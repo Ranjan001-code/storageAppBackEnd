@@ -35,7 +35,7 @@ export async function sendOtpService(email) {
       html,
     });
   } catch (err) {
-    next(err);
+    console.error("OTP sending service failed");
   }
 
   return { success: true, message: `OTP sent successfully on ${email}` };
