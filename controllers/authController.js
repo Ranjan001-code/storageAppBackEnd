@@ -125,7 +125,7 @@ export const loginWithGoogle = async (req, res, next) => {
 
     const sessionId = await generateSession(userId, rootDirId, userDoc.role);
     const sessionExpiryTime = 60 * 1000 * 60 * 24 * 7;
-    res.cookie("sid", sessionId, {
+    okie("sid", sessionId, {
       httpOnly: true,
       signed: true,
       secure: true,

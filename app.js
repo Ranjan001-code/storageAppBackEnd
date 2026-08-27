@@ -23,16 +23,17 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
+
+app.use(
   express.json({
     verify: (req, res, buf) => {
       req.rawBody = buf;
     },
-  }),
-);
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
   }),
 );
 app.use("/directory", checkAuth, directoryRoutes);
