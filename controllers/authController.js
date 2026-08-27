@@ -90,6 +90,8 @@ export const loginWithGoogle = async (req, res, next) => {
     res.cookie("sid", sessionId, {
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
       maxAge: sessionExpiryTime,
     });
 
@@ -126,6 +128,8 @@ export const loginWithGoogle = async (req, res, next) => {
     res.cookie("sid", sessionId, {
       httpOnly: true,
       signed: true,
+      secure: true,
+      sameSite: "none",
       maxAge: sessionExpiryTime,
     });
 
@@ -249,11 +253,17 @@ export const githubCallback = async (req, res, next) => {
       }
 
       const sessionExpiryTime = 60 * 1000 * 60 * 24 * 7;
-      const sessionId = await generateSession(user.id, user.rootDirId, user.role);
+      const sessionId = await generateSession(
+        user.id,
+        user.rootDirId,
+        user.role,
+      );
 
       res.cookie("sid", sessionId, {
         httpOnly: true,
-        signed: true,
+      signed: true,
+      secure: true,
+      sameSite: "none",
         maxAge: sessionExpiryTime,
       });
 
@@ -299,8 +309,10 @@ export const githubCallback = async (req, res, next) => {
       const sessionId = await generateSession(userId, rootDirId, userDoc.role);
       const sessionExpiryTime = 60 * 1000 * 60 * 24 * 7;
       res.cookie("sid", sessionId, {
-        httpOnly: true,
-        signed: true,
+       httpOnly: true,
+      signed: true,
+      secure: true,
+      sameSite: "none",
         maxAge: sessionExpiryTime,
       });
 

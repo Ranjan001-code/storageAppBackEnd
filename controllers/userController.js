@@ -150,9 +150,10 @@ export const login = async (req, res, next) => {
   await redisClient.expire(redisKey, sessionExpiryTime / 1000);
 
   res.cookie("sid", sessionId, {
-    httpOnly: true,
-    signed: true,
-    sameSite: "lax",
+   httpOnly: true,
+      signed: true,
+      secure: true,
+      sameSite: "none",
     maxAge: sessionExpiryTime,
   });
   res.json({ message: "logged in" });
