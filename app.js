@@ -37,8 +37,9 @@ app.use(
   }),
 );
 
-app.use("/", () => {
+app.use("/", (req,res,next) => {
   return res.status(200).json({ msg: "Hello from storageAppBackEnd" });
+next();
 });
 app.use("/directory", checkAuth, directoryRoutes);
 app.use("/file", checkAuth, fileRoutes);
