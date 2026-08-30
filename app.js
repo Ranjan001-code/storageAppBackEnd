@@ -22,12 +22,20 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(cookieParser(process.env.SESSION_SECRET));
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  }),
-);
+
+const allowedOrigins = [process.env.CLIENT_URL_1, process.env.CLIENT_URL_2];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 app.use(
   express.json({
@@ -37,9 +45,9 @@ app.use(
   }),
 );
 
-app.use("/", (req,res,next) => {
+app.use("/", (req, res, next) => {
   console.log("BackEnd running successfully");
-next();
+  next();
 });
 app.use("/directory", checkAuth, directoryRoutes);
 app.use("/file", checkAuth, fileRoutes);

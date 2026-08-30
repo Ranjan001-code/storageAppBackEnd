@@ -11,14 +11,14 @@ export const createCloudFrontGetSignedUrl = ({
 }) => {
   const dateLessThan = new Date(Date.now() + 1000 * 60 * 60).toISOString();
   const url = `${distributionName}/${key}?response-content-disposition=${encodeURIComponent(`${download ? "attachment" : "inline"}; filename=${filename}`)}`;
-  console.log("CloudFront URL:", url);
+  // console.log("CloudFront URL:", url);
   const signedUrl = getSignedUrl({
     url,
     keyPairId,
     dateLessThan,
     privateKey,
   });
-  console.log("Signed URL:", signedUrl);
+  // console.log("Signed URL:", signedUrl);
   return signedUrl;
 };
 
