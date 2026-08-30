@@ -120,3 +120,4 @@ app.listen(PORT, () => {
 });
 
 // mongod --config "C:\Program Files\MongoDB\Server\8.2\bin\mongod.cfg"
+// ssh -i "storageAppBackEnd_EC2.pem" ubuntu@ec2-65-1-104-156.ap-south-1.compute.amazonaws.com

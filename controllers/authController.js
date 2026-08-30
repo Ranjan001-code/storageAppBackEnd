@@ -274,7 +274,7 @@ export const githubCallback = async (req, res, next) => {
         type: "GITHUB_AUTH",
         status: "success"
       },
-      "${process.env.CLIENT_URL}"
+      "${process.env.CLIENT_URL_1}"
     );
 
     window.close();
@@ -325,7 +325,7 @@ export const githubCallback = async (req, res, next) => {
         type: "GITHUB_AUTH",
         status: "success"
       },
-      "${process.env.CLIENT_URL}"
+      "${process.env.CLIENT_URL_1}"
     );
 
     window.close();
@@ -345,7 +345,7 @@ export const githubCallback = async (req, res, next) => {
         type: "GITHUB_AUTH",
         status: "failed"
       },
-      "${process.env.CLIENT_URL}"
+      "${process.env.CLIENT_URL_1}"
     );
 
     window.close();
