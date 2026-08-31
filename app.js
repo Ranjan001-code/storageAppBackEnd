@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(cookieParser(process.env.SESSION_SECRET));
 
-const allowedOrigins = [process.env.CLIENT_URL_1, process.env.CLIENT_URL_2];
+const allowedOrigins = [process.env.CLIENT_URL_1];
 
 const corsOptions = {
   origin: function (origin, callback) {

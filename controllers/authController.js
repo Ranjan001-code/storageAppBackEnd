@@ -327,7 +327,6 @@ export const githubCallback = async (req, res, next) => {
       },
       "${process.env.CLIENT_URL_1}"
     );
-
     window.close();
   </script>
 `);
@@ -347,7 +346,6 @@ export const githubCallback = async (req, res, next) => {
       },
       "${process.env.CLIENT_URL_1}"
     );
-
     window.close();
   </script>
 `);
