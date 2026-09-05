@@ -54,6 +54,7 @@ app.use("/", (req, res, next) => {
   console.log("BackEnd running successfully");
   next();
 });
+
 app.use("/directory", checkAuth, directoryRoutes);
 app.use("/file", checkAuth, fileRoutes);
 app.use("/subscriptions", checkAuth, subscriptionRoutes);
