@@ -14,15 +14,16 @@ import {
   register,
   setUserPassword,
 } from "../controllers/userController.js";
+import { loginLimiter, registerLimiter } from "../middlewares/rateLimit.js";
 
 const router = express.Router();
 
-router.post("/user/register", register);
+router.post("/user/register", registerLimiter, register);
 
-router.post("/user/login", login);
+router.post("/user/login", loginLimiter, login);
 
 router.get("/user", checkAuth, getCurrentUser);
-router.post("/user/set-password", checkAuth,  setUserPassword);
+router.post("/user/set-password", checkAuth, setUserPassword);
 
 router.post("/user/logout", logout);
 router.post("/user/logout-all", logoutAll);
@@ -33,7 +34,7 @@ router.post(
   "/users/:userId/logout",
   checkAuth,
   checkNotRegularUser,
-  logoutById
+  logoutById,
 );
 
 router.delete("/users/:userId", checkAuth, checkIsAdminUser, deleteUser);

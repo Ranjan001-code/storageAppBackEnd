@@ -21,6 +21,10 @@ await connectDB();
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+
+// Trust Nginx as the reverse proxy
+app.set('trust proxy', 1);
+
 app.use(cookieParser(process.env.SESSION_SECRET));
 
 const allowedOrigins = [process.env.CLIENT_URL_1];
